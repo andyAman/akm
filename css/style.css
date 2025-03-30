@@ -1,0 +1,258 @@
+/* Basic Reset & Global Styles */
+:root {
+    --primary-color: #0a0a2a; /* Dark blue */
+    --secondary-color: #6a0dad; /* Purple */
+    --accent-color: #00ffff; /* Cyan */
+    --text-color: #e0e0e0;
+    --glow-color: rgba(0, 255, 255, 0.7);
+    --item-width: 250px; /* Width of portfolio items */
+    --item-height: 200px; /* Height of portfolio items */
+    --carousel-radius: 400px; /* Adjust for spread */
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(45deg, var(--primary-color), #1a1a3a);
+    color: var(--text-color);
+    line-height: 1.6;
+    overflow-x: hidden; /* Prevent horizontal scroll */
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+header {
+    padding: 1.5rem 0;
+    text-align: center;
+    color: var(--accent-color);
+    text-shadow: 0 0 10px var(--glow-color);
+    width: 100%;
+}
+
+/* Main Container and Scene Setup */
+.portfolio-container {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    padding: 2rem 0;
+    position: relative; /* Needed for absolute positioning of details */
+}
+
+.scene {
+    width: var(--item-width); /* Match item width initially */
+    height: var(--item-height); /* Match item height */
+    perspective: 1500px; /* Creates the 3D space */
+    margin-bottom: 2rem;
+}
+
+.carousel {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    transform-style: preserve-3d; /* Crucial for nesting 3D elements */
+    transform: translateZ(calc(-1 * var(--carousel-radius))) rotateY(0deg); /* Initial position */
+    transition: transform 1s cubic-bezier(0.77, 0, 0.175, 1); /* Smooth rotation */
+}
+
+/* Portfolio Item Styling */
+.portfolio-item {
+    position: absolute;
+    left: 0; /* Positioned relative to the carousel center */
+    top: 0;
+    width: var(--item-width);
+    height: var(--item-height);
+    background-color: rgba(40, 40, 80, 0.7);
+    border: 2px solid var(--accent-color);
+    border-radius: 10px;
+    overflow: hidden;
+    cursor: pointer;
+    backface-visibility: hidden; /* Hide back when rotated */
+    transition: transform 0.5s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+    display: flex;
+    flex-direction: column;
+}
+
+.portfolio-item img {
+    width: 100%;
+    height: 70%; /* Adjust as needed */
+    object-fit: cover;
+    display: block;
+    opacity: 0.9;
+    transition: opacity 0.3s ease;
+}
+
+.portfolio-item .item-info {
+    padding: 0.8rem;
+    text-align: center;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.item-info h3 {
+    margin-bottom: 0.3rem;
+    color: var(--accent-color);
+    font-size: 1.1rem;
+}
+
+.item-info p {
+    font-size: 0.9rem;
+    color: #ccc;
+}
+
+/* Hover Effects */
+.portfolio-item:hover {
+    transform: translateY(-10px) scale(1.05); /* Lift and scale */
+    border-color: #fff;
+    box-shadow: 0 0 30px var(--glow-color);
+}
+
+.portfolio-item:hover img {
+    opacity: 1;
+}
+
+/* Navigation Buttons */
+.navigation {
+    text-align: center;
+    margin-top: 1rem;
+}
+
+.navigation button {
+    background-color: var(--secondary-color);
+    color: var(--text-color);
+    border: 1px solid var(--accent-color);
+    padding: 0.7rem 1.5rem;
+    margin: 0 0.5rem;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.navigation button:hover {
+    background-color: var(--accent-color);
+    color: var(--primary-color);
+    box-shadow: 0 0 15px var(--glow-color);
+}
+
+/* Dynamic Content Details Styling */
+.details-container {
+    position: fixed; /* Or absolute relative to portfolio-container */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(10, 10, 42, 0.95); /* Semi-transparent background */
+    z-index: 100;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem;
+    opacity: 0;
+    visibility: hidden;
+    transform: scale(0.9);
+    transition: opacity 0.5s ease, visibility 0s linear 0.5s, transform 0.5s ease; /* Smooth fade/scale */
+}
+
+.details-container.visible {
+    opacity: 1;
+    visibility: visible;
+    transform: scale(1);
+    transition: opacity 0.5s ease, visibility 0s linear 0s, transform 0.5s ease;
+}
+
+.details-content {
+    background-color: var(--primary-color);
+    padding: 2rem 3rem;
+    border-radius: 10px;
+    max-width: 800px;
+    max-height: 80vh;
+    overflow-y: auto;
+    position: relative;
+    box-shadow: 0 0 30px var(--glow-color);
+    border: 1px solid var(--accent-color);
+    color: var(--text-color); /* Ensure text is visible */
+}
+
+.details-content h2 {
+    color: var(--accent-color);
+    margin-bottom: 1rem;
+}
+
+.details-content img.details-image {
+    max-width: 100%;
+    height: auto;
+    border-radius: 5px;
+    margin-bottom: 1rem;
+}
+
+
+.close-btn {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    background: none;
+    border: none;
+    color: var(--accent-color);
+    font-size: 2.5rem;
+    line-height: 1;
+    cursor: pointer;
+    transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.close-btn:hover {
+    color: #fff;
+    transform: rotate(90deg);
+}
+
+
+/* Responsive Design */
+@media (max-width: 900px) {
+    :root {
+        --carousel-radius: 300px; /* Smaller radius on smaller screens */
+    }
+    .details-content {
+        padding: 1.5rem 2rem;
+        max-width: 90%;
+    }
+}
+
+@media (max-width: 600px) {
+    :root {
+        --item-width: 200px;
+        --item-height: 160px;
+        --carousel-radius: 220px; /* Even smaller radius */
+    }
+    .scene {
+        perspective: 1000px; /* Less perspective */
+        width: var(--item-width);
+        height: var(--item-height);
+    }
+    header h1 {
+        font-size: 1.8rem;
+    }
+     .navigation button {
+        padding: 0.5rem 1rem;
+        font-size: 0.9rem;
+    }
+    .details-content {
+        padding: 1rem 1.5rem;
+    }
+    .close-btn {
+        font-size: 2rem;
+        top: 10px;
+        right: 15px;
+    }
+}
