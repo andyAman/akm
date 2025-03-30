@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My 3D Portfolio</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <h1>My Awesome Portfolio</h1>
+    </header>
+
+    <main class="portfolio-container">
+        <div class="scene">
+            <div class="carousel">
+                <div class="portfolio-item" data-project-id="project1">
+                    <img src="https://via.placeholder.com/250x200/FF5733/FFFFFF?text=Project+1" alt="Project 1 Preview">
+                    <div class="item-info">
+                        <h3>Project One</h3>
+                        <p>Brief description.</p>
+                    </div>
+                </div>
+                <div class="portfolio-item" data-project-id="project2">
+                    <img src="https://via.placeholder.com/250x200/33FF57/FFFFFF?text=Project+2" alt="Project 2 Preview">
+                     <div class="item-info">
+                        <h3>Project Two</h3>
+                        <p>Another cool project.</p>
+                    </div>
+                </div>
+                <div class="portfolio-item" data-project-id="project3">
+                    <img src="https://via.placeholder.com/250x200/3357FF/FFFFFF?text=Project+3" alt="Project 3 Preview">
+                     <div class="item-info">
+                        <h3>Project Three</h3>
+                        <p>Web development showcase.</p>
+                    </div>
+                </div>
+                <div class="portfolio-item" data-project-id="project4">
+                    <img src="https://via.placeholder.com/250x200/F1C40F/FFFFFF?text=Project+4" alt="Project 4 Preview">
+                     <div class="item-info">
+                        <h3>Project Four</h3>
+                        <p>Design and animation.</p>
+                    </div>
+                </div>
+                 <div class="portfolio-item" data-project-id="project5">
+                    <img src="https://via.placeholder.com/250x200/9B59B6/FFFFFF?text=Project+5" alt="Project 5 Preview">
+                     <div class="item-info">
+                        <h3>Project Five</h3>
+                        <p>Interactive experience.</p>
+                    </div>
+                </div>
+                 <div class="portfolio-item" data-project-id="project6">
+                    <img src="https://via.placeholder.com/250x200/E74C3C/FFFFFF?text=Project+6" alt="Project 6 Preview">
+                     <div class="item-info">
+                        <h3>Project Six</h3>
+                        <p>Data visualization.</p>
+                    </div>
+                </div>
+                </div>
+        </div>
+
+        <div class="navigation">
+            <button id="prevBtn">&lt; Prev</button>
+            <button id="nextBtn">Next &gt;</button>
+        </div>
+    </main>
+
+    <div id="project-details-container" class="details-container">
+        <button id="close-details-btn" class="close-btn">&times;</button>
+        <div id="project-content" class="details-content">
+            </div>
+    </div>
+
+    <script src="js/script.js"></script>
+</body>
+</html>
